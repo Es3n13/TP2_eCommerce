@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+:root {
+  --gov-blue: #003366;
+  --gov-gray: #f4f4f4;
+  --gov-accent: #d4af37;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--gov-gray);
+  color: #333;
+}

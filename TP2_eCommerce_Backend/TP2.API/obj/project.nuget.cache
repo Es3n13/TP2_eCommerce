@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "o+1Xi2D94u0=",
+  "success": true,
+  "projectFilePath": "D:\\UQAR\\2026 Été\\Genie Commerce Electronique\\TP2\\codebase\\TP2_eCommerce_Backend\\TP2.API\\TP2.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Utilisateur\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.9\\microsoft.aspnetcore.openapi.10.0.9.nupkg.sha512",
+    "C:\\Users\\Utilisateur\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
