@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
+    "Method": "Submit",
+    "RelativePath": "api/TaxDeclarations/submit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "TP2.Application.DTOs.SubmitDeclarationRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
+    "Method": "GetByUser",
+    "RelativePath": "api/TaxDeclarations/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,1 +1,6 @@
-<Solution />
+<Solution>
+  <Project Path="TP2.API/TP2.API.csproj" />
+  <Project Path="TP2.Application/TP2.Application.csproj" />
+  <Project Path="TP2.Domain/TP2.Domain.csproj" />
+  <Project Path="TP2.Infrastructure/TP2.Infrastructure.csproj" />
+</Solution>
