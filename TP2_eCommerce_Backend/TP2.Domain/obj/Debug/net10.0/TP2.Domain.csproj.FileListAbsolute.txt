@@ -1,8 +1,6 @@
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\bin\Debug\net10.0\TP2.Domain.deps.json
-D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\bin\Debug\net10.0\TP2.Domain.runtimeconfig.json
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\bin\Debug\net10.0\TP2.Domain.dll
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\bin\Debug\net10.0\TP2.Domain.pdb
-D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\obj\Debug\net10.0\TP2.Domain.csproj.AssemblyReference.cache
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\obj\Debug\net10.0\TP2.Domain.GeneratedMSBuildEditorConfig.editorconfig
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\obj\Debug\net10.0\TP2.Domain.AssemblyInfoInputs.cache
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\obj\Debug\net10.0\TP2.Domain.AssemblyInfo.cs
@@ -11,5 +9,4 @@ D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backen
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\obj\Debug\net10.0\TP2.Domain.dll
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\obj\Debug\net10.0\refint\TP2.Domain.dll
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\obj\Debug\net10.0\TP2.Domain.pdb
-D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\obj\Debug\net10.0\TP2.Domain.genruntimeconfig.cache
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.Domain\obj\Debug\net10.0\ref\TP2.Domain.dll

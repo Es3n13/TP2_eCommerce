@@ -29,7 +29,7 @@ namespace TP2.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Error = ex.Message });
+                return BadRequest(new { error = ex.ToString() });
             }
         }
 
