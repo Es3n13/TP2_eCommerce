@@ -65,21 +65,21 @@ namespace TP2.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AttemptNumber")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("AttemptTime")
+                    b.Property<DateTime>("AttemptDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DeclarationId")
                         .HasColumnType("int");
 
                     b.Property<string>("ErrorMessage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsSuccessful")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RetryCount")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

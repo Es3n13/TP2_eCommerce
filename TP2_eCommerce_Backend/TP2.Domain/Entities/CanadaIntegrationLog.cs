@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System;
 namespace TP2.Domain.Entities
 {
     public class CanadaIntegrationLog
     {
         public int Id { get; set; }
         public int DeclarationId { get; set; }
-        public int AttemptNumber { get; set; }
-        public DateTime AttemptTime { get; set; } = DateTime.UtcNow;
-        public string Status { get; set; } = string.Empty; // Success, Failed, Timeout
-        public string? ErrorMessage { get; set; }
+        public DateTime AttemptDate { get; set; }
+        public string ErrorMessage { get; set; }
+        public int RetryCount { get; set; } // 0 = 1ère tentative, 1 = 1er retry, etc.
+        public bool IsSuccessful { get; set; }
     }
 }

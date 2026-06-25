@@ -5,6 +5,80 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Agent/pending-reviews": {
+      "get": {
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Agent/decide": {
+      "post": {
+        "tags": [
+          "Agent"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecideDeclarationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecideDeclarationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecideDeclarationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Agent/assign": {
+      "post": {
+        "tags": [
+          "Agent"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignDeclarationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignDeclarationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignDeclarationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/TaxDeclarations/submit": {
       "post": {
         "tags": [
@@ -93,6 +167,20 @@
   },
   "components": {
     "schemas": {
+      "AssignDeclarationRequest": {
+        "type": "object",
+        "properties": {
+          "declarationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "agentId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "CreateUserRequestDto": {
         "type": "object",
         "properties": {
@@ -123,6 +211,24 @@
         },
         "additionalProperties": false
       },
+      "DecideDeclarationRequest": {
+        "type": "object",
+        "properties": {
+          "declarationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "agentNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "decision": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "SubmitDeclarationRequestDto": {
         "type": "object",
         "properties": {
@@ -148,6 +254,9 @@
     }
   },
   "tags": [
+    {
+      "name": "Agent"
+    },
     {
       "name": "TaxDeclarations"
     },

@@ -10,6 +10,7 @@ namespace TP2.Domain.Interfaces
         Task<TaxDeclaration?> GetByIdAsync(int id);
         Task<IEnumerable<TaxDeclaration>> GetByUserIdAsync(int userId);
         Task<IEnumerable<TaxDeclaration>> GetPendingReviewAsync(); // Pour l'agent
+        Task<List<TaxDeclaration>> GetAllAsync();
         Task AddAsync(TaxDeclaration declaration);
         Task UpdateAsync(TaxDeclaration declaration);
         Task UpdateStatusAsync(int id, string status);

@@ -1,5 +1,47 @@
 [
   {
+    "ContainingType": "TP2.API.Controllers.AgentController",
+    "Method": "Assign",
+    "RelativePath": "api/Agent/assign",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "TP2.Application.DTOs.AssignDeclarationRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TP2.API.Controllers.AgentController",
+    "Method": "Decide",
+    "RelativePath": "api/Agent/decide",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "TP2.Application.DTOs.DecideDeclarationRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TP2.API.Controllers.AgentController",
+    "Method": "GetPendingReviews",
+    "RelativePath": "api/Agent/pending-reviews",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
     "Method": "Submit",
     "RelativePath": "api/TaxDeclarations/submit",

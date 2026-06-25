@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TP2.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ac0c7672994b3c0fc660c245e5754035042ee20")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b27d73c3345014fd01368ffec1463ef40ce96d33")]
 [assembly: System.Reflection.AssemblyProductAttribute("TP2.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TP2.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

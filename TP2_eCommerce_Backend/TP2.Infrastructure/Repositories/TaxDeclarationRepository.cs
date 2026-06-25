@@ -25,6 +25,11 @@ namespace TP2.Infrastructure.Repositories
         public async Task<IEnumerable<TaxDeclaration>> GetPendingReviewAsync() =>
             await _context.TaxDeclarations.Where(d => d.Status == "Submitted").ToListAsync();
 
+        public async Task<List<TaxDeclaration>> GetAllAsync()
+        {
+            return await _context.TaxDeclarations.ToListAsync();
+        }
+
         public async Task AddAsync(TaxDeclaration declaration)
         {
             await _context.TaxDeclarations.AddAsync(declaration);

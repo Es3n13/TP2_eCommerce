@@ -16,7 +16,7 @@ namespace TP2.Domain.Entities
         public DateTime? SubmissionDate { get; set; }
         public string Status { get; set; } = "Draft"; // Draft, Submitted, UnderReview, Validated, Rejected
         public string? AgentNotes { get; set; }
-        public int? ReviewedBy { get; set; }
+        public int? AssignedAgentId { get; set; }
 
         // Propriétés de navigation (pour faciliter les jointures plus tard)
         public virtual User? User { get; set; }
