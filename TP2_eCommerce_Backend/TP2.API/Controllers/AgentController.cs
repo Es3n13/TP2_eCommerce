@@ -12,16 +12,41 @@ namespace TP2.API.Controllers
         private readonly GetPendingReviewsUseCase _getPendingReviewsUseCase;
         private readonly DecideDeclarationUseCase _decideUseCase;
         private readonly AssignDeclarationUseCase _assignUseCase;
+        private readonly CreateAgentUseCase _createAgentUseCase;
 
-        public AgentController(GetPendingReviewsUseCase getPendingReviewsUseCase, DecideDeclarationUseCase decideUseCase, AssignDeclarationUseCase assignDeclarationUseCase)
+        public AgentController(
+            GetPendingReviewsUseCase getPendingReviewsUseCase,
+            DecideDeclarationUseCase decideUseCase,
+            AssignDeclarationUseCase assignUseCase,
+            CreateAgentUseCase createAgentUseCase)
         {
             _getPendingReviewsUseCase = getPendingReviewsUseCase;
             _decideUseCase = decideUseCase;
-            _assignUseCase = assignDeclarationUseCase;
+            _assignUseCase = assignUseCase;
+            _createAgentUseCase = createAgentUseCase;
         }
         /// <summary>
         /// Récupère la liste des déclarations en attente de revue (Statut: UnderReview)
         /// </summary>
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateAgent([FromBody] CreateAgentRequest request)
+        {
+            try
+            {
+                var agentId = await _createAgentUseCase.ExecuteAsync(request);
+                return Ok(new { message = "Agent créé avec succès", id = agentId });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, new { message = $"Erreur interne : {ex.Message}" });
+            }
+        }
+
         [HttpGet("pending-reviews")]
         public async Task<IActionResult> GetPendingReviews()
         {

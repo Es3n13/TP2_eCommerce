@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TP2.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b27d73c3345014fd01368ffec1463ef40ce96d33")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c859f1fd9a69df0aa68b2a1a8a43c6108bf2bab5")]
 [assembly: System.Reflection.AssemblyProductAttribute("TP2.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TP2.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -26,6 +26,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // 3. Enregistrement des Repositories (Infrastructure)
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAgentRepository, AgentRepository>();
+builder.Services.AddScoped<CreateAgentUseCase>();
 builder.Services.AddScoped<ITaxDeclarationRepository, TaxDeclarationRepository>();
 builder.Services.AddScoped<GetPendingReviewsUseCase>();
 builder.Services.AddScoped<DecideDeclarationUseCase>();

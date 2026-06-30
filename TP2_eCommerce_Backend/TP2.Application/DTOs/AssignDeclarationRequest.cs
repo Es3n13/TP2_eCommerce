@@ -7,5 +7,5 @@ namespace TP2.Application.DTOs;
 public class AssignDeclarationRequest
 {
     public int DeclarationId { get; set; }
-    public int AgentId { get; set; }
+    public string EmployeeId { get; set; } = string.Empty;
 }

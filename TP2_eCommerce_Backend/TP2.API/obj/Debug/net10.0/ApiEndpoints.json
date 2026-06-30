@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "TP2.API.Controllers.AgentController",
+    "Method": "CreateAgent",
+    "RelativePath": "api/Agent/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "TP2.Application.DTOs.CreateAgentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TP2.API.Controllers.AgentController",
     "Method": "Decide",
     "RelativePath": "api/Agent/decide",
     "HttpMethod": "POST",
