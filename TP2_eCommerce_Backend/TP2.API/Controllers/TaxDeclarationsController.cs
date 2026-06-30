@@ -5,17 +5,27 @@ using TP2.Application.UseCases.Declarations;
 namespace TP2.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] // L'URL sera : api/TaxDeclarations
+    [Route("api/[controller]")] // api/TaxDeclarations
     public class TaxDeclarationsController : ControllerBase
     {
         private readonly ISubmitTaxDeclarationUseCase _submitUseCase;
         private readonly IGetUserDeclarationsUseCase _getUserDeclarationsUseCase;
+        private readonly IInitializeDeclarationUseCase _initUseCase;
+        private readonly ISaveDeclarationDraftUseCase _saveDraftUseCase;
+        private readonly IUploadSupportingDocumentUseCase _uploadDocUseCase;
+
         public TaxDeclarationsController(
             ISubmitTaxDeclarationUseCase submitUseCase,
-            IGetUserDeclarationsUseCase getUserDeclarationsUseCase)
+            IGetUserDeclarationsUseCase getUserDeclarationsUseCase,
+            IInitializeDeclarationUseCase initUseCase,
+            ISaveDeclarationDraftUseCase saveDraftUseCase,
+            IUploadSupportingDocumentUseCase uploadDocUseCase)
         {
             _submitUseCase = submitUseCase;
             _getUserDeclarationsUseCase = getUserDeclarationsUseCase;
+            _initUseCase = initUseCase;
+            _saveDraftUseCase = saveDraftUseCase;
+            _uploadDocUseCase = uploadDocUseCase;
         }
 
         // POST: api/TaxDeclarations/submit
@@ -46,6 +56,29 @@ namespace TP2.API.Controllers
             {
                 return BadRequest(new { Error = ex.Message });
             }
+        }
+
+        [HttpPost("initialize")]
+        public async Task<IActionResult> Initialize([FromBody] InitializeDeclarationRequestDto request)
+        {
+            var id = await _initUseCase.ExecuteAsync(request);
+            return Ok(new { Message = "Déclaration initialisée", DeclarationId = id });
+        }
+
+        [HttpPut("save-draft")]
+        public async Task<IActionResult> SaveDraft([FromBody] SaveDeclarationDraftRequestDto request)
+        {
+            await _saveDraftUseCase.ExecuteAsync(request);
+            return Ok(new { Message = "Brouillon sauvegardé" });
+        }
+
+        [HttpPost("upload-document")]
+        public async Task<IActionResult> UploadDocument(int declarationId, IFormFile file)
+        {
+            using var ms = new MemoryStream();
+            await file.CopyToAsync(ms);
+            var docId = await _uploadDocUseCase.ExecuteAsync(declarationId, file.FileName, ms.ToArray());
+            return Ok(new { Message = "Document tranféré", DocumentId = docId });
         }
     }
 }

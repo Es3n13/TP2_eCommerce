@@ -17,9 +17,9 @@ namespace TP2.Application.UseCases.Declarations
 
         public async Task<IEnumerable<TaxDeclarationDto>> ExecuteAsync(int userId)
         {
-            // 1. Récupérer les entités depuis le repository
+            // Récupérer les entités depuis le repository
             var declarations = await _declarationRepository.GetByUserIdAsync(userId);
-            // 2. Mapper les entités vers des DTOs
+            // Mapper les entités vers des DTOs
             return declarations.Select(d => new TaxDeclarationDto
             {
                 Id = d.Id,

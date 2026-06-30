@@ -59,6 +59,38 @@
   },
   {
     "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
+    "Method": "Initialize",
+    "RelativePath": "api/TaxDeclarations/initialize",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "TP2.Application.DTOs.InitializeDeclarationRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
+    "Method": "SaveDraft",
+    "RelativePath": "api/TaxDeclarations/save-draft",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "TP2.Application.DTOs.SaveDeclarationDraftRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
     "Method": "Submit",
     "RelativePath": "api/TaxDeclarations/submit",
     "HttpMethod": "POST",
@@ -69,6 +101,27 @@
         "Name": "request",
         "Type": "TP2.Application.DTOs.SubmitDeclarationRequestDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
+    "Method": "UploadDocument",
+    "RelativePath": "api/TaxDeclarations/upload-document",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "declarationId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

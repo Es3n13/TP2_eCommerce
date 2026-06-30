@@ -18,5 +18,5 @@ public class CreateAgentRequest
     public string Email { get; set; } = string.Empty;
 
     [Required]
-    public string Password { get; set; } = string.Empty; // En prod, on  devrait hacher ce mot de passe
+    public string Password { get; set; } = string.Empty; // En prod, on  devrait hacher le mot de passe
 }

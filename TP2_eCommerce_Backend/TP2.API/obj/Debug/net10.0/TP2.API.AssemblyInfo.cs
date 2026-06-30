@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TP2.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c859f1fd9a69df0aa68b2a1a8a43c6108bf2bab5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f61918fe27f03b416e6abdf02d609302cc829bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("TP2.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TP2.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

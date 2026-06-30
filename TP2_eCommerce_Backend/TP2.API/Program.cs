@@ -37,6 +37,9 @@ builder.Services.AddScoped<IIntegrationLogRepository, IntegrationLogRepository>(
 builder.Services.AddScoped<ICreateUserUseCase, CreateUserUseCase>();
 builder.Services.AddScoped<ICanadaRevenueService, CanadaRevenueService>();
 builder.Services.AddScoped<IProcessAutomaticValidationUseCase, ProcessAutomaticValidationUseCase>();
+builder.Services.AddScoped<IInitializeDeclarationUseCase, InitializeDeclarationUseCase>();
+builder.Services.AddScoped<ISaveDeclarationDraftUseCase, SaveDeclarationDraftUseCase>();
+builder.Services.AddScoped<IUploadSupportingDocumentUseCase, UploadSupportingDocumentUseCase>();
 
 // 4. Enregistrement des Use Cases (Application)
 builder.Services.AddScoped<ISubmitTaxDeclarationUseCase, SubmitTaxDeclarationUseCase>();
