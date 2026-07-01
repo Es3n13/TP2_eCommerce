@@ -40,6 +40,7 @@ builder.Services.AddScoped<IProcessAutomaticValidationUseCase, ProcessAutomaticV
 builder.Services.AddScoped<IInitializeDeclarationUseCase, InitializeDeclarationUseCase>();
 builder.Services.AddScoped<ISaveDeclarationDraftUseCase, SaveDeclarationDraftUseCase>();
 builder.Services.AddScoped<IUploadSupportingDocumentUseCase, UploadSupportingDocumentUseCase>();
+builder.Services.AddScoped<IDownloadNoaUseCase, DownloadNoaUseCase>(); 
 
 // 4. Enregistrement des Use Cases (Application)
 builder.Services.AddScoped<ISubmitTaxDeclarationUseCase, SubmitTaxDeclarationUseCase>();

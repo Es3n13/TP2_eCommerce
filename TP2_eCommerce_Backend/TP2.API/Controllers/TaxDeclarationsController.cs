@@ -13,19 +13,22 @@ namespace TP2.API.Controllers
         private readonly IInitializeDeclarationUseCase _initUseCase;
         private readonly ISaveDeclarationDraftUseCase _saveDraftUseCase;
         private readonly IUploadSupportingDocumentUseCase _uploadDocUseCase;
+        private readonly IDownloadNoaUseCase _downloadNoaUseCase;
 
         public TaxDeclarationsController(
             ISubmitTaxDeclarationUseCase submitUseCase,
             IGetUserDeclarationsUseCase getUserDeclarationsUseCase,
             IInitializeDeclarationUseCase initUseCase,
             ISaveDeclarationDraftUseCase saveDraftUseCase,
-            IUploadSupportingDocumentUseCase uploadDocUseCase)
+            IUploadSupportingDocumentUseCase uploadDocUseCase,
+            IDownloadNoaUseCase downloadNoaUseCase)
         {
             _submitUseCase = submitUseCase;
             _getUserDeclarationsUseCase = getUserDeclarationsUseCase;
             _initUseCase = initUseCase;
             _saveDraftUseCase = saveDraftUseCase;
             _uploadDocUseCase = uploadDocUseCase;
+            _downloadNoaUseCase = downloadNoaUseCase;
         }
 
         // POST: api/TaxDeclarations/submit
@@ -79,6 +82,31 @@ namespace TP2.API.Controllers
             await file.CopyToAsync(ms);
             var docId = await _uploadDocUseCase.ExecuteAsync(declarationId, file.FileName, ms.ToArray());
             return Ok(new { Message = "Document tranféré", DocumentId = docId });
+        }
+
+        [HttpGet("download-noa/{declarationId}")]
+        public async Task<IActionResult> DownloadNoa(int declarationId)
+        {
+            try
+            {
+                var fileData = await _downloadNoaUseCase.ExecuteAsync(declarationId);
+
+                if (fileData == null)
+                {
+                    return NotFound(new { Message = "Aucun avis de cotisation trouvé pour cette déclaration." });
+                }
+
+                // Retourne le fichier pour téléchargement immédiat
+                return File(fileData.Content, fileData.ContentType, fileData.FileName);
+            }
+            catch (FileNotFoundException ex)
+            {
+                return NotFound(new { Error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Error = ex.Message });
+            }
         }
     }
 }
