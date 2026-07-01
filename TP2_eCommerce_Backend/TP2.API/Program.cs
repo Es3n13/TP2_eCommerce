@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using TP2.Application.UseCases.Agents;
 using TP2.Application.UseCases.Declarations;
 using TP2.Application.UseCases.TaxDeclarations;
 using TP2.Application.UseCases.Users;
-using TP2.Application.UseCases.Agents;
 using TP2.Domain.Interfaces;
 using TP2.Infrastructure.Data;
 using TP2.Infrastructure.Repositories;
@@ -46,6 +49,29 @@ builder.Services.AddScoped<IDownloadNoaUseCase, DownloadNoaUseCase>();
 builder.Services.AddScoped<ISubmitTaxDeclarationUseCase, SubmitTaxDeclarationUseCase>();
 builder.Services.AddScoped<IGetUserDeclarationsUseCase, GetUserDeclarationsUseCase>();
 
+// JWT Authentication configuration
+var jwtSettings = builder.Configuration.GetSection("Jwt");
+var key = Encoding.ASCII.GetBytes(jwtSettings["Key"]);
+
+builder.Services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options => {
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidateAudience = true,
+        ValidAudience = jwtSettings["Audience"],
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero
+    };
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -57,6 +83,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

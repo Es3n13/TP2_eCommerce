@@ -9,6 +9,7 @@ namespace TP2.Domain.Interfaces
     {
         Task<Agent?> GetByIdAsync(int id);
         Task<Agent?> GetByEmployeeIdAsync(string employeeId);
+        Task<Agent?> GetByEmailAsync(string email);
         Task AddAsync(Agent agent);
         Task UpdateAsync(Agent agent);
     }

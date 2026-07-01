@@ -34,5 +34,7 @@ namespace TP2.Infrastructure.Repositories
             _context.Agents.Update(agent);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Agent?> GetByEmailAsync(string email) => await _context.Agents.FirstOrDefaultAsync(a => a.Email == email);
     }
 }

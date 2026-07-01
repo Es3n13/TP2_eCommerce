@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TP2.Application.DTOs;
 using TP2.Application.UseCases.Declarations;
 
 namespace TP2.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] // api/TaxDeclarations
+    [Authorize(Roles = "User")]
+    [Route("api/[controller]")]
     public class TaxDeclarationsController : ControllerBase
     {
         private readonly ISubmitTaxDeclarationUseCase _submitUseCase;

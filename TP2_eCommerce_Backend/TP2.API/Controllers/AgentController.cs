@@ -2,10 +2,12 @@
 using TP2.Application.UseCases;
 using TP2.Application.DTOs;
 using TP2.Application.UseCases.Agents;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TP2.API.Controllers
 {
     [ApiController]
+    [Authorize(Roles = "Agent")]
     [Route("api/[controller]")]
     public class AgentController : ControllerBase
     {
