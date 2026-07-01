@@ -167,3 +167,4 @@ D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backen
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.API\obj\Debug\net10.0\TP2.API.genruntimeconfig.cache
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.API\obj\Debug\net10.0\ref\TP2.API.dll
 D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.API\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+D:\UQAR\2026 Été\Genie Commerce Electronique\TP2\codebase\TP2_eCommerce_Backend\TP2.API\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

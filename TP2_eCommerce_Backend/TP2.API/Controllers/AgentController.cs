@@ -28,6 +28,7 @@ namespace TP2.API.Controllers
             _createAgentUseCase = createAgentUseCase;
         }
 
+        [AllowAnonymous]
         [HttpPost("create")]
         public async Task<IActionResult> CreateAgent([FromBody] CreateAgentRequest request)
         {
