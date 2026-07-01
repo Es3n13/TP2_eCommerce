@@ -25,9 +25,6 @@ namespace TP2.API.Controllers
             _assignUseCase = assignUseCase;
             _createAgentUseCase = createAgentUseCase;
         }
-        /// <summary>
-        /// Récupère la liste des déclarations en attente de revue (Statut: UnderReview)
-        /// </summary>
 
         [HttpPost("create")]
         public async Task<IActionResult> CreateAgent([FromBody] CreateAgentRequest request)
@@ -72,7 +69,6 @@ namespace TP2.API.Controllers
         {
             try
             {
-                // Note : N'oublie pas d'injecter DecideDeclarationUseCase dans le constructeur !
                 await _decideUseCase.ExecuteAsync(request);
                 return Ok(new { message = "Décision enregistrée avec succès" });
             }

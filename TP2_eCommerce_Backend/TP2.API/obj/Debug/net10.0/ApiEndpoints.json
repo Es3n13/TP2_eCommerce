@@ -59,6 +59,22 @@
   },
   {
     "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
+    "Method": "DownloadNoa",
+    "RelativePath": "api/TaxDeclarations/download-noa/{declarationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "declarationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
     "Method": "Initialize",
     "RelativePath": "api/TaxDeclarations/initialize",
     "HttpMethod": "POST",
