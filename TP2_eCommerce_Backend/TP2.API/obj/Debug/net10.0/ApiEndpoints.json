@@ -107,6 +107,16 @@
   },
   {
     "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
+    "Method": "GetMyDeclarations",
+    "RelativePath": "api/TaxDeclarations/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
     "Method": "SaveDraft",
     "RelativePath": "api/TaxDeclarations/save-draft",
     "HttpMethod": "PUT",
@@ -154,22 +164,6 @@
         "Name": "file",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TP2.API.Controllers.TaxDeclarationsController",
-    "Method": "GetByUser",
-    "RelativePath": "api/TaxDeclarations/user/{userId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
       }
     ],
     "ReturnTypes": []

@@ -141,6 +141,18 @@
         }
       }
     },
+    "/api/TaxDeclarations/me": {
+      "get": {
+        "tags": [
+          "TaxDeclarations"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/TaxDeclarations/submit": {
       "post": {
         "tags": [
@@ -165,29 +177,6 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/TaxDeclarations/user/{userId}": {
-      "get": {
-        "tags": [
-          "TaxDeclarations"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"

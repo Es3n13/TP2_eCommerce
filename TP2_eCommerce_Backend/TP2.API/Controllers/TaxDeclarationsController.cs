@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TP2.Application.DTOs;
 using TP2.Application.UseCases.Declarations;
 
@@ -33,27 +34,19 @@ namespace TP2.API.Controllers
             _downloadNoaUseCase = downloadNoaUseCase;
         }
 
-        // POST: api/TaxDeclarations/submit
-        [HttpPost("submit")]
-        public async Task<IActionResult> Submit([FromBody] SubmitDeclarationRequestDto request)
+        private int GetAuthenticatedUserId()
         {
-            try
-            {
-                var result = await _submitUseCase.ExecuteAsync(request.UserId, request);
-                return Ok(new { Message = "Déclaration soumise avec succès", DeclarationId = result });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.ToString() });
-            }
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdClaim)) throw new UnauthorizedAccessException("Utilisateur non identifié.");
+            return int.Parse(userIdClaim);
         }
 
-        // GET: api/TaxDeclarations/user/{userId}
-        [HttpGet("user/{userId}")]
-        public async Task<IActionResult> GetByUser(int userId)
+        [HttpGet("me")]
+        public async Task<IActionResult> GetMyDeclarations()
         {
             try
             {
+                int userId = GetAuthenticatedUserId();
                 var declarations = await _getUserDeclarationsUseCase.ExecuteAsync(userId);
                 return Ok(declarations);
             }
@@ -63,11 +56,37 @@ namespace TP2.API.Controllers
             }
         }
 
+        [HttpPost("submit")]
+        public async Task<IActionResult> Submit([FromBody] SubmitDeclarationRequestDto request)
+        {
+            try
+            {
+                int authUserId = GetAuthenticatedUserId();
+                var result = await _submitUseCase.ExecuteAsync(authUserId, request);
+                return Ok(new { Message = "Déclaration soumise avec succès", DeclarationId = result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.ToString() });
+            }
+        }
+
         [HttpPost("initialize")]
         public async Task<IActionResult> Initialize([FromBody] InitializeDeclarationRequestDto request)
         {
-            var id = await _initUseCase.ExecuteAsync(request);
-            return Ok(new { Message = "Déclaration initialisée", DeclarationId = id });
+            try
+            {
+                int authUserId = GetAuthenticatedUserId();
+
+                request.UserId = authUserId;
+
+                var id = await _initUseCase.ExecuteAsync(request);
+                return Ok(new { Message = "Déclaration initialisée", DeclarationId = id });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpPut("save-draft")]
@@ -98,7 +117,6 @@ namespace TP2.API.Controllers
                     return NotFound(new { Message = "Aucun avis de cotisation trouvé pour cette déclaration." });
                 }
 
-                // Retourne le fichier pour téléchargement immédiat
                 return File(fileData.Content, fileData.ContentType, fileData.FileName);
             }
             catch (FileNotFoundException ex)
