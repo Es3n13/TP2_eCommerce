@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../services/api'; // Import de l'api
+import api from '../services/api';
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -54,7 +54,6 @@ const DashboardPage = () => {
                 </span>
               </div>
               <button 
-                // 🚀 On passe l'ID dans l'URL pour que le formulaire sache quoi charger
                 onClick={() => decl.status === 'Brouillon' ? navigate(`/declare?id=${decl.id}`) : null}
                 className="mt-4 w-full py-2 border border-[#003366] text-[#003366] rounded font-medium hover:bg-[#003366] hover:text-white transition-all"
               >

@@ -39,18 +39,18 @@ export const useDeclaration = () => {
   const loadDeclaration = useCallback(async (id) => {
     setIsLoading(true);
     setError(null);
-    console.log("🔍 [DEBUG] Tentative de chargement du brouillon ID:", id);
+    console.log("[DEBUG] Tentative de chargement du brouillon ID:", id);
     
     try {
       const data = await api.get('/TaxDeclarations/me');
-      console.log("🌐 [DEBUG] Réponse brute du serveur (/TaxDeclarations/me):", data);
+      console.log("[DEBUG] Réponse brute du serveur (/TaxDeclarations/me):", data);
 
       // On vérifie le format de la réponse
       const list = Array.isArray(data) ? data : (data.declarations || data.value || []);
-      console.log("📋 [DEBUG] Liste des déclarations extraite:", list);
+      console.log("[DEBUG] Liste des déclarations extraite:", list);
       
       const decl = list.find(d => String(d.id) === String(id));
-      console.log("🎯 [DEBUG] Déclaration trouvée pour l'ID ?", decl ? "OUI" : "NON", decl);
+      console.log("[DEBUG] Déclaration trouvée pour l'ID ?", decl ? "OUI" : "NON", decl);
 
       if (decl) {
         setFormData({
@@ -63,10 +63,10 @@ export const useDeclaration = () => {
         return { success: true };
       }
       
-      console.error("❌ [DEBUG] L'ID existe dans l'URL mais n'est pas présent dans la liste renvoyée par le serveur");
+      console.error("[DEBUG] L'ID existe dans l'URL mais n'est pas présent dans la liste renvoyée par le serveur");
       throw new Error("Brouillon introuvable sur le serveur.");
     } catch (err) {
-      console.error("🔥 [DEBUG] Erreur critique lors du chargement:", err);
+      console.error("[DEBUG] Erreur critique lors du chargement:", err);
       const msg = err.response?.data?.error || err.message || "Erreur de chargement";
       setError(msg);
       return { success: false, error: msg };

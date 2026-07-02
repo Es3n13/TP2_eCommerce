@@ -17,7 +17,6 @@ const DeclarationFormPage = () => {
 
   const steps = ['Année', 'Revenus', 'Justificatifs', 'Récapitulatif'];
 
-  // ✅ Logique de reprise améliorée
   useEffect(() => {
     if (id) {
       const resume = async () => {
@@ -34,10 +33,9 @@ const DeclarationFormPage = () => {
       resume();
     }
   }, [id, navigate]);
-  // ✅ Nouvelle logique du bouton "Suivant"
+
   const handleNext = async () => {
     if (step === 1) {
-      // Si on est à l'étape 1, on initialise la déclaration avant de passer à la suite
       if (!formData.taxYear) {
         alert("Veuillez choisir une année.");
         return;
@@ -50,8 +48,6 @@ const DeclarationFormPage = () => {
     }
     setStep(step + 1);
   };
-
-  // 🌟 Écran de chargement pour éviter le flash de l'étape 1 lors d'une reprise
   if (isResuming && isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
@@ -63,7 +59,7 @@ const DeclarationFormPage = () => {
 
   return (
     <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200">
-      {/* Progress Bar */}
+
       <div className="bg-gray-100 p-4 flex justify-between border-b">
         {steps.map((s, i) => (
           <div key={s} className="flex items-center gap-2">
@@ -76,7 +72,7 @@ const DeclarationFormPage = () => {
       </div>
 
       <div className="p-8">
-        {/* STEP 1: ANNÉE */}
+
         {step === 1 && (
           <div className="space-y-6 text-center py-10">
             <h3 className="text-3xl font-bold text-[#003366]">Bienvenue</h3>
@@ -90,11 +86,10 @@ const DeclarationFormPage = () => {
                 onChange={(e) => updateField('taxYear', e.target.value)}
               />
             </div>
-            {/* ❌ On a supprimé le bouton "Commencer" d'ici */}
             {error && <p className="text-red-500 font-medium">{error}</p>}
           </div>
         )}
-        {/* STEP 2: REVENUS */}
+
         {step === 2 && (
           <div className="space-y-4">
             <h3 className="text-2xl font-bold mb-4">Revenus Annuels</h3>
@@ -108,7 +103,6 @@ const DeclarationFormPage = () => {
             </div>
           </div>
         )}
-        {/* STEP 3: JUSTIFICATIFS */}
         {step === 3 && (
           <div className="space-y-4">
             <h3 className="text-2xl font-bold mb-4">Justificatifs</h3>
@@ -124,7 +118,6 @@ const DeclarationFormPage = () => {
           </div>
         )}
 
-        {/* STEP 4: RÉCAPITULATIF */}
         {step === 4 && (
           <div className="space-y-6">
             <h3 className="text-2xl font-bold mb-4">Récapitulatif Final</h3>
@@ -136,7 +129,6 @@ const DeclarationFormPage = () => {
             </div>
           </div>
         )}
-        {/* Navigation Footer */}
         <div className="mt-8 flex justify-between items-center">
           <button
             onClick={() => step > 1 ? setStep(step - 1) : navigate('/dashboard')}
@@ -159,7 +151,7 @@ const DeclarationFormPage = () => {
 
             {step < 4 ? (
               <button
-                onClick={handleNext} // ✅ Utilisation de la nouvelle fonction handleNext
+                onClick={handleNext}
                 className="bg-[#003366] text-white px-6 py-2 rounded font-bold hover:bg-blue-900"
                 disabled={isLoading}
               >
