@@ -3,15 +3,40 @@ import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
 const DashboardPage = () => {
-  const navigate = useNavigate();
   const [declarations, setDeclarations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // On récupère les déclarations de l'utilisateur connecté via l'API
-    api.get('/declaration/my-declarations')
-      .then(res => setDeclarations(res.data))
-      .catch(err => console.error("Erreur chargement dashboard", err));
+    const fetchDeclarations = async () => {
+      try {
+        setLoading(true);
+        
+        const userId = localStorage.getItem('userId'); 
+        
+        if (!userId) {
+          console.error("Aucun userId trouvé dans le localStorage");
+          setLoading(false);
+          return;
+        }
+
+        console.log(`Appel de l'API pour l'utilisateur : ${userId}`);
+        const response = await api.get(`/TaxDeclarations/user/${userId}`);
+        
+        setDeclarations(response);
+      } catch (err) {
+        console.error("Erreur chargement dashboard", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDeclarations();
   }, []);
+
+  if (loading) {
+    return <div className="p-6 text-center">Chargement...</div>;
+  }
 
   return (
     <div className="space-y-6">
@@ -23,7 +48,7 @@ const DashboardPage = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {declarations.length > 0 ? (
+        {declarations && declarations.length > 0 ? (
           declarations.map(decl => (
             <div key={decl.id} className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex flex-col justify-between">
               <div>

@@ -8,10 +8,38 @@ const LoginPage = () => {
   const { login, isLoading, error } = useAuth();
   const navigate = useNavigate();
 
+  const decodeToken = (token) => {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      return JSON.parse(jsonPayload);
+    } catch (e) {
+      console.error("Erreur lors du décodage du token", e);
+      return null;
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const authData = await login(email, password);
+      const token = authData.token;
+
+      if (token) {
+        const decoded = decodeToken(token);
+        const userId = decoded ? decoded.sub : null;
+
+        if (userId) {
+          localStorage.setItem('userId', userId);
+          console.log("UserId extrait du token et sauvegardé :", userId);
+        } else {
+          console.warn("L'ID n'est pas présent dans le payload du token");
+        }
+      }
       if (authData.role === 'Agent') {
         navigate('/agent-queue');
       } else {

@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDeclaration } from '../viewmodels/useDeclaration'; // Import du cerveau
+import { useDeclaration } from '../viewmodels/useDeclaration';
 
 const DeclarationFormPage = () => {
-  const [step, setStep] = useState(1);
-  const navigate = useNavigate();
-  
-  // On connecte la vue au ViewModel
-  const { formData, updateField, documents, addDocument, submitDeclaration, isLoading } = useDeclaration();
+ const navigate = useNavigate();
+ const {
+ step,
+ setStep,
+ formData,
+ setFormData,
+ updateField,
+ documents,
+ addDocument,
+ submitDeclaration,
+ saveDraft,
+ isLoading,
+ error
+ } = useDeclaration();
 
-  const steps = ['Identité', 'Revenus', 'Justificatifs', 'Récapitulatif'];
+ // 🔍 AJOUTE CETTE LIGNE ICI :
+ console.log("DEBUG FORMULAIRE -> Step:", step, "FormData:", formData, "Documents:", documents);
+
+ const steps = ['Identité', 'Revenus', 'Justificatifs', 'Récapitulatif'];
 
   return (
     <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200">
@@ -103,43 +115,74 @@ const DeclarationFormPage = () => {
           </div>
         )}
         {step === 4 && (
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold mb-4">Récapitulatif Final</h3>
-            <div className="bg-gray-50 p-4 rounded-lg border space-y-2">
-              <div className="flex justify-between border-b py-1"><span>Nom:</span> <span className="font-medium">{formData.firstName} {formData.lastName}</span></div>
-              <div className="flex justify-between border-b py-1"><span>Revenu déclaré:</span> <span className="font-medium">{formData.income} $</span></div>
-              <div className="flex justify-between border-b py-1"><span>Documents:</span> <span className="font-medium">{documents.length} fichier(s) joint(s)</span></div>
-            </div>
-          </div>
+        <div className="space-y-6">
+        <h3 className="text-2xl font-bold mb-4">Récapitulatif Final</h3>
+        <div className="bg-gray-50 p-4 rounded-lg border space-y-2">
+        <div className="flex justify-between border-b py-1">
+          <span>Nom:</span> 
+          <span className="font-medium">{formData?.firstName || 'Non renseigné'} {formData?.lastName || ''}</span>
+        </div>
+        <div className="flex justify-between border-b py-1">
+          <span>Revenu déclaré:</span> 
+          <span className="font-medium">{formData?.income || '0'} $</span>
+        </div>
+        <div className="flex justify-between border-b py-1">
+          <span>Documents:</span> 
+          <span className="font-medium">{documents?.length || 0} fichier(s) joint(s)</span>
+        </div>
+        </div>
+        </div>
         )}
 
-        <div className="mt-8 flex justify-between">
+        <div className="mt-8 flex justify-between items-center">
           <button 
             onClick={() => step > 1 ? setStep(step - 1) : navigate('/dashboard')} 
-            className="px-6 py-2 rounded font-medium text-gray-600" 
+            className="px-6 py-2 rounded font-medium text-gray-600 hover:bg-gray-100 transition-colors" 
             disabled={step === 1}
           >
             Précédent
           </button>
-          {step < 4 ? (
-            <button onClick={() => setStep(step + 1)} className="bg-[#003366] text-white px-6 py-2 rounded font-bold">Suivant</button>
-          ) : (
+          <div className="flex gap-3">
             <button 
               onClick={async () => {
-                const res = await submitDeclaration();
+                const res = await saveDraft();
                 if(res.success) {
-                  alert('Déclaration soumise avec succès !');
-                  navigate('/dashboard');
+                  alert('Brouillon sauvegardé avec succès !');
                 } else {
-                  alert('Erreur : ' + res.error);
+                  alert('Erreur lors de la sauvegarde : ' + res.error);
                 }
-              }} 
-              className="bg-green-600 text-white px-6 py-2 rounded font-bold"
+              }}
+              className="px-6 py-2 rounded font-medium border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors"
               disabled={isLoading}
             >
-              {isLoading ? 'Envoi...' : 'Soumettre Officiellement'}
+              {isLoading ? '...' : 'Sauvegarder le brouillon'}
             </button>
-          )}
+
+            {step < 4 ? (
+              <button 
+                onClick={() => setStep(step + 1)} 
+                className="bg-[#003366] text-white px-6 py-2 rounded font-bold hover:bg-[#002244] transition-colors"
+              >
+                Suivant
+              </button>
+            ) : (
+              <button 
+                onClick={async () => {
+                  const res = await submitDeclaration();
+                  if(res.success) {
+                    alert('Déclaration soumise avec succès !');
+                    navigate('/dashboard');
+                  } else {
+                    alert('Erreur : ' + res.error);
+                  }
+                }} 
+                className="bg-green-600 text-white px-6 py-2 rounded font-bold hover:bg-green-700 transition-colors"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Envoi...' : 'Soumettre Officiellement'}
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
